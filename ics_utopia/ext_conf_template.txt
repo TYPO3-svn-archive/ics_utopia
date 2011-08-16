@@ -1,3 +1,5 @@
+# TODO: Transform all except templates root into TSconfig on template root page. Use the "include plugin" feature?
+
 template {
 	# cat=basic/template/1; type=int+; label=Site template pages: The page where the site templates are created.
 	root=0

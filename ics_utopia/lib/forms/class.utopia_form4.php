@@ -42,13 +42,11 @@ require_once(t3lib_extMgm::extPath('ics_utopia', 'lib/class.utopia_config.php'))
  */
 class utopia_form4 extends utopia_form_base
 {
-	var $level = 3;
+	var $level = 1; // TODO: Make this var as settings.
 
 	function renderForm($mode, $formData)
 	{
 		parent::renderForm($mode, $formData);
-		// var_dump('Render');
-		// var_dump($formData);
 		if (empty($formData))
 			$formData = array();
 		if (!isset($formData['tx_icsutopia_site']) || empty($formData['tx_icsutopia_site']))

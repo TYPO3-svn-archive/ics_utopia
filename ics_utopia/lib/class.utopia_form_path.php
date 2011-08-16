@@ -98,7 +98,7 @@ class utopia_form_path
 	{
 		if ($this->useCache !== null)
 			return $this->useCache;
-		$config = t3lib_div::makeInstance('utopia_config');
+		$config = t3lib_div::makeInstance('utopia_config'); // TODO: Use registry.
 		$disabled = $config->getDisabledExts('form');
 		$order = $config->getConfig('forms.order');
 		return $this->useCache = (($this->cache['availableHash'] == md5(serialize($this->forms))) &&
@@ -159,9 +159,9 @@ class utopia_form_path
 		}
 		$this->cache['prev'] = $this->prev;
 		$this->cache['next'] = $this->next;
-		$config = t3lib_div::makeInstance('utopia_config');
+		$config = t3lib_div::makeInstance('utopia_config'); // TODO: Use registry
 		$config->setConfig('pathcache', $this->cache);
-		$config->saveConfig();
+		// $config->saveConfig();
 	}
 	
 	function getNext($formId)

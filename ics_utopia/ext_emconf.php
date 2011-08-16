@@ -14,10 +14,10 @@ $EM_CONF[$_EXTKEY] = array(
 	'title' => 'UTOPIA',
 	'description' => 'Usine TYPO3 Ouverte de Production Internet Automatisée. The core extension for automated creation of sites using configured models on a multi-sites platform.',
 	'category' => 'module',
-	'author' => 'In Cité Solution',
+	'author' => 'In Cite Solution',
 	'author_email' => 'technique@incitesolution.fr',
 	'shy' => '',
-	'dependencies' => '',
+	'dependencies' => 'fpdf',
 	'conflicts' => '',
 	'priority' => '',
 	'module' => 'mod1,mod2,mod3,mod4,mod5',
@@ -28,10 +28,13 @@ $EM_CONF[$_EXTKEY] = array(
 	'modify_tables' => '',
 	'clearCacheOnLoad' => 0,
 	'lockType' => '',
-	'author_company' => 'In Cité Solution',
+	'author_company' => 'In Cite Solution',
 	'version' => '1.0.0',
 	'constraints' => array(
 		'depends' => array(
+			'fpdf' => '',
+			'php' => '5.2.0-0.0.0',
+			'typo3' => '4.3.0-0.0.0',
 		),
 		'conflicts' => array(
 		),

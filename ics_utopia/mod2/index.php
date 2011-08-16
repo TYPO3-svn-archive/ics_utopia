@@ -42,7 +42,7 @@ $BE_USER->modAccess($MCONF,1);	// This checks permissions and exits if the users
 require_once(PATH_t3lib.'class.t3lib_tsstyleconfig.php');
 require_once(t3lib_extMgm::extPath('ics_utopia', 'lib/class.utopia_forms.php'));
 
-class tx_icsutopia_module2 extends t3lib_SCbase {
+class tx_icsutopia_module2 extends t3lib_SCbase { // TODO: Edit the new TSconfig settings instead of plugin settings.
 	var $pageinfo;
 
 	/**
@@ -210,21 +210,22 @@ class tx_icsutopia_module2 extends t3lib_SCbase {
 		if (isset($_POST['data']))
 		{
 		}
-		$forms = t3lib_div::makeInstance('utopia_forms');
-		$forms->init('BE');
-		$forms->tceforms->formName = 'utopiaconf';
-		$forms->tceforms->globalShowHelp = 1;
-		$forms->tceforms->edit_showFieldHelp = 'text';
-		$GLOBALS['LANG']->loadSingleTableDescription('utopiaconf');
-		$panel = '';
-		$row = array('uid' => '1');
-		$this->confToTableRow('', $row, $this->extConf);
-		foreach ($this->menuKeys[$function] as $key)
-		{
-			$panel .= $forms->getGenSingleField('utopiaconf', str_replace('.', '_', $key), $row, '', 0, '', 0, $this->tca[$key]);
-		}
-		$content = $forms->wrapTotal($panel, $this->mainMenu[$this->MOD_SETTINGS['function']], '');
-		$this->content .= $forms->getTopJS() . $content . $forms->getBottomJS();
+		// $forms = t3lib_div::makeInstance('utopia_forms');
+		// $forms->init('BE');
+		// $forms->tceforms->formName = 'utopiaconf';
+		// $forms->tceforms->globalShowHelp = 1;
+		// $forms->tceforms->edit_showFieldHelp = 'text';
+		// $GLOBALS['LANG']->loadSingleTableDescription('utopiaconf');
+		// $panel = '';
+		// $row = array('uid' => '1');
+		// $this->confToTableRow('', $row, $this->extConf);
+		// foreach ($this->menuKeys[$function] as $key)
+		// {
+			// $panel .= $forms->getGenSingleField('utopiaconf', str_replace('.', '_', $key), $row, '', 0, '', 0, $this->tca[$key]);
+		// }
+		// $content = $forms->wrapTotal($panel, $this->mainMenu[$this->MOD_SETTINGS['function']], '');
+		// $this->content .= $forms->getTopJS() . $content . $forms->getBottomJS();
+		$this->content .= 'Not yet available';
 	}
 	
 	function confToTableRow($prefix, & $output, $conf)

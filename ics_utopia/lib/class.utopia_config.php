@@ -40,7 +40,7 @@ require_once(PATH_t3lib.'class.t3lib_install.php');
  * @author In Cité Solution <technique@incitesolution.fr>
  * @package UTOPIA
  */
-class utopia_config
+class utopia_config // TODO: Change to a TSconfig editor.
 {
 	var $extKey = 'ics_utopia';
 	var $_conf = null;	//Extension settings.
