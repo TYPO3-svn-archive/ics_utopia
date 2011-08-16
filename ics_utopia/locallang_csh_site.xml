@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>CSH</type>
+		<description>Language labels for extension 'ics_utopia', table 'tx_icsutopia_site'.</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="url.description">The URL of the Website, without any protocol prefix (eg. http://).</label>
+			<label index="be_group.description">The usergroup to which the access to the Website is granted.</label>
+			<label index="base_model.description">The route to the base model page structure.</label>
+			<label index="title.description">The title of the Website.</label>
+			<label index="main_storage.description">The Website folder page used as main storage folder.</label>
+		</languageKey>
+	</data>
+</T3locallang>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for module &quot;tools_txicsutopiaM3&quot;</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="title">Archives</label>
+			<label index="header.file">Site name</label>
+			<label index="error.noarchive">No request.</label>
+			<label index="title.list">Accepted requets list</label>
+		</languageKey>
+		<languageKey index="fr" type="array">
+			<label index="title">Archives</label>
+			<label index="header.file">Nom du site</label>
+			<label index="error.noarchive">Pas de requête.</label>
+			<label index="title.list">Liste des demandes archivées</label>
+			<label index="error.norequest">Pas de demande.</label>
+		</languageKey>
+	</data>
+	<orig_hash type="array">
+		<languageKey index="fr" type="array">
+			<label index="title" type="integer">24706534</label>
+			<label index="header.file" type="integer">135685754</label>
+			<label index="error.noarchive" type="integer">51525437</label>
+			<label index="title.list" type="integer">22238901</label>
+		</languageKey>
+	</orig_hash>
+	<orig_text type="array">
+		<languageKey index="fr" type="array">
+			<label index="title">Archives</label>
+			<label index="header.file">Site name</label>
+			<label index="error.noarchive">No request.</label>
+			<label index="title.list">Accepted requets list</label>
+		</languageKey>
+	</orig_text>
+</T3locallang>

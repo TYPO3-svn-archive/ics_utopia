@@ -1,0 +1,19 @@
+<html>
+<head>
+	<title>Refus de la création du site ###SITE_NAME###</title>
+</head>
+<body>
+	<p>
+		<a name="french"></a>
+		Bonjour ,<br />
+		<br />
+		La demande pour la création du site ###SITE_NAME### vient d'être refusée par l'administrateur du site.<br />
+		Vous pouvez le contacter pour plus d'informations.<br />
+
+
+		<br />
+		Cordialement,<br />
+		L'administrateur du site
+	</p>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>Demande pour un nouveau site</title>
+</head>
+<body>
+	<p>
+		<a name="french"></a>
+		Bonjour ,<br />
+		<br />
+		Une demande de création d'un nouveau site a été effectuée.<br />
+		Voici le détails du site : <br />
+		
+			- Titre du site : ###SITE_NAME###<br /><br />
+
+		
+		Vous pouvez vous rendre dans la partie administration du site afin de :<br />
+			- consulter les demandes actuelles <br />
+			- valider la nouvelle demande <br />
+			- refuser la nouvelle demande <br />
+
+		<br />
+		Cordialement,<br />
+		L'administrateur du site
+	</p>
+</body>
+</html>

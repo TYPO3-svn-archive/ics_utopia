@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>module</type>
+		<description>Language labels for module &quot;tools_txicsutopiaM4&quot;</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="title">Current requests</label>
+			<label index="header.file">Site name</label>
+			<label index="header.actions">Available actions</label>
+			<label index="action.import">Validate and import</label>
+			<label index="action.modify">Modify</label>
+			<label index="action.reject">Reject</label>
+			<label index="error.norequest">No request.</label>
+			<label index="title.list">Requests list</label>
+			<label index="title.import">Import</label>
+			<label index="error.notfound">File not found</label>
+			<label index="error">Error: ###ERROR###</label>
+			<label index="title.result">Import result</label>
+			<label index="title.reject">Reject result</label>
+			<label index="rejected">Request successfully rejected.</label>
+		</languageKey>
+		<languageKey index="fr" type="array">
+			<label index="title">Demandes actuelles</label>
+			<label index="header.file">Nom du site</label>
+			<label index="header.actions">Actions disponibles</label>
+			<label index="action.import">Valider et importer</label>
+			<label index="action.modify">Modifier</label>
+			<label index="action.reject">Refuser</label>
+			<label index="error.norequest">Pas de demande.</label>
+			<label index="title.list">Liste des demandes</label>
+			<label index="title.import">Importation</label>
+			<label index="error.notfound">Fichier non trouvé</label>
+			<label index="error">Erreur : ###ERROR###</label>
+			<label index="title.result">Résultat de l'import</label>
+			<label index="title.reject">Résultat du refus</label>
+			<label index="rejected">La demande est refusée avec succès.</label>
+		</languageKey>
+	</data>
+</T3locallang>

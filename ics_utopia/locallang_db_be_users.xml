@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields overrides belonging to extension 'ics_utopia'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="be_users.realName">Name:</label>
+			<label index="be_users.email">Email:</label>
+			<label index="be_users.username">Username:</label>
+			<label index="be_users.password">Password:</label>
+		</languageKey>
+	</data>
+	<orig_hash type="array">
+	</orig_hash>
+	<orig_text type="array">
+	</orig_text>
+</T3locallang>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>help</type>
+		<description>Language labels for module &quot;tools_txicsutopiaM2&quot; fake database</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="template_root.description">The page where the site templates are created.</label>
+			<label index="template_beusers.description">Comma-separated list of the back-end user templates. A user is defined by its id and its role joigned by an hyphen.</label>
+			<label index="template_begroup.description">The group id used as a template for the created users main group.</label>
+			<label index="template_storage.description">Name of the main storage folder which exists in each template.</label>
+			<label index="template_createfe.description">Create frontend user counterpart for backend users.</label>
+			<label index="template_fegroup.description">Name of the main frontend group where to put users into. This group have to exists in each template.</label>
+			<label index="forms_order.description">The order of the extension forms in the creation course.</label>
+			<label index="disabledexts.description">The comma-separated list of the disabled extensions.</label>
+			<label index="mail_adminfile.description">The template file used to notify the administrator about a new site. Translation can be guessed using language extension (ie. .fr or .en).</label>
+			<label index="mail_adminsubject.description">The subject template for the notification mail sent to the administrator. Usual translation can be used.</label>
+			<label index="mail_acceptfile.description">The template file used to notify the requester about the acceptance of his site. Translation can be guessed using language extension (ie. .fr or .en).</label>
+			<label index="mail_acceptsubject.description">The subject template for the acceptance notification mail sent to the requester. Usual translation can be used.</label>
+			<label index="mail_rejectfile.description">The template file used to notify the requester about the rejection of his site. Translation can be guessed using language extension (ie. .fr or .en).</label>
+			<label index="mail_rejectsubject.description">The subject template for the rejection notification mail sent to the requester. Usual translation can be used.</label>
+			<label index="mail_adminusers.description">The comma-separated list of UTOPIA's administrators uids.</label>
+			<label index="storage_requests.description">fileadmin/ relative path where to save the requests.</label>
+			<label index="storage_archives.description">fileadmin/ relative path where to save accepted requests.</label>
+			<label index="storage_oldroot.description">fileadmin/ relative path where the root of the site templates are. The match is done by path segment. An empty path segment (nothing between two slashes) means the name is not relevant. A not empty one means must match. When this root match, it is replaced by the new root.</label>
+			<label index="storage_newroot.description">fileadmin/ relative path where to save the site specific files. If no ###TITLE### marker is found, the title is appended to the path.</label>
+			<label index="storage_siteroot.description">The sysfolder page where to import sites.</label>
+			<label index="import_statics.description">Comma-separated list of the static tables set to define when exporting site templates.</label>
+		</languageKey>
+	</data>
+	<orig_hash type="array">
+	</orig_hash>
+	<orig_text type="array">
+	</orig_text>
+</T3locallang>

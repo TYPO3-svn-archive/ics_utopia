@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>CSH</type>
+		<description>Language labels for extension 'ics_utopia', table 'be_users'.</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="realName.description">The full name of the user to create.</label>
+			<label index="email.description">The E-mail address of the user.</label>
+			<label index="username.description">The login name of the user.</label>
+			<label index="password.description">The password of the user.</label>
+		</languageKey>
+	</data>
+</T3locallang>

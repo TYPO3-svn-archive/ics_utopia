@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>CSH</type>
+		<description>Language labels for extension 'ics_utopia', table 'tx_icsutopia_site'.</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="level0.description">First model level.</label>
+			<label index="level1.description">Second model level.</label>
+			<label index="level2.description">Third model level.</label>
+		</languageKey>
+	</data>
+	<orig_hash type="array">
+	</orig_hash>
+	<orig_text type="array">
+	</orig_text>
+</T3locallang>
