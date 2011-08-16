@@ -1,14 +1,11 @@
 <?php
 
-	// DO NOT REMOVE OR CHANGE THESE 3 LINES:
-define('TYPO3_MOD_PATH', '../typo3conf/ext/ics_utopia/mod5/');
-$BACK_PATH='../../../../typo3/';
-$MCONF['name']='txicsutopiaM1_txicsutopiaM5';
-
+	// DO NOT REMOVE OR CHANGE THESE 2 LINES:
+$MCONF['name'] = 'txicsutopiaM1_txicsutopiaM5';
+$MCONF['script'] = '_DISPATCH';
 	
-$MCONF['access']='user,group';
-$MCONF['script']='index.php';
+$MCONF['access'] = 'user,group';
 
 $MLANG['default']['tabs_images']['tab'] = '../utopia.gif';
-$MLANG['default']['ll_ref']='LLL:EXT:ics_utopia/mod5/locallang_mod.xml';
+$MLANG['default']['ll_ref'] = 'LLL:EXT:ics_utopia/mod5/locallang_mod.xml';
 ?>

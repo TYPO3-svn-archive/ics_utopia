@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2008 In Cité Solution <technique@incitesolution.fr>
+*  (c) 2008 In CitÃ© Solution <technique@incitesolution.fr>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -22,21 +22,14 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /**
- * Module 'Current requests' for the 'ics_utopia' extension.
+ * [CLASS/FUNCTION INDEX of SCRIPT]
  *
- * @author	In Cité Solution <technique@incitesolution.fr>
+ * Hint: use extdeveval to insert/update function index above.
  */
 
 
-
-	// DEFAULT initialization of a module [BEGIN]
-unset($MCONF);
-require ("conf.php");
-require ($BACK_PATH."init.php");
-require ($BACK_PATH."template.php");
-$LANG->includeLLFile('EXT:impexp/app/locallang.php');
-$LANG->includeLLFile("EXT:ics_utopia/mod4/locallang.xml");
-require_once (PATH_t3lib."class.t3lib_scbase.php");
+$LANG->includeLLFile('EXT:ics_utopia/mod4/locallang.xml');
+require_once(PATH_t3lib . 'class.t3lib_scbase.php');
 $BE_USER->modAccess($MCONF,1);	// This checks permissions and exits if the users has no permission for entry.
 	// DEFAULT initialization of a module [END]
 require_once(t3lib_extMgm::extPath('ics_utopia', 'lib/class.utopia_config.php'));
@@ -44,7 +37,16 @@ require_once(t3lib_extMgm::extPath('ics_utopia', 'lib/class.utopia_session.php')
 require_once(t3lib_extMgm::extPath('ics_utopia', 'lib/class.utopia_form_manager.php'));
 require_once(t3lib_extMgm::extPath('ics_utopia', 'lib/class.utopia_mail_notify.php'));
 
-class tx_icsutopia_module4 extends t3lib_SCbase {
+
+
+/**
+ * Module 'Current requests' for the 'ics_utopia' extension.
+ *
+ * @author	Pierrick Caillon <pierrick@in-cite.net>
+ * @package	TYPO3
+ * @subpackage	tx_icsutopia
+ */
+class  tx_icsutopia_module4 extends t3lib_SCbase {
 	var $pageinfo;
 
 	/**
@@ -57,8 +59,8 @@ class tx_icsutopia_module4 extends t3lib_SCbase {
 		parent::init();
 
 		/*
-		if (t3lib_div::_GP("clear_all_cache"))	{
-			$this->include_once[]=PATH_t3lib."class.t3lib_tcemain.php";
+		if (t3lib_div::_GP('clear_all_cache'))	{
+			$this->include_once[] = PATH_t3lib.'class.t3lib_tcemain.php';
 		}
 		*/
 	}
@@ -71,10 +73,10 @@ class tx_icsutopia_module4 extends t3lib_SCbase {
 	function menuConfig()	{
 		global $LANG;
 		$this->MOD_MENU = Array (
-			"function" => Array (
-				/*"1" => $LANG->getLL("function1"),
-				"2" => $LANG->getLL("function2"),
-				"3" => $LANG->getLL("function3"),*/
+			'function' => Array (
+				/*'1' => $LANG->getLL('function1'),
+				'2' => $LANG->getLL('function2'),
+				'3' => $LANG->getLL('function3'),*/
 			)
 		);
 		parent::menuConfig();
@@ -93,13 +95,17 @@ class tx_icsutopia_module4 extends t3lib_SCbase {
 		// The page will show only if there is a valid page and if this page may be viewed by the user
 		$this->pageinfo = t3lib_BEfunc::readPageAccess($this->id,$this->perms_clause);
 		$access = is_array($this->pageinfo) ? 1 : 0;
+	
+			// initialize doc
+		$this->doc = t3lib_div::makeInstance('template');
+		$this->doc->setModuleTemplate(t3lib_extMgm::extPath('ics_utopia') . 'mod4/mod_template.html');
+		$this->doc->backPath = $BACK_PATH;
+		$docHeaderButtons = $this->getButtons();
 
-		if (($this->id && $access) || ($BE_USER->user["admin"] && !$this->id))	{
+		if (($this->id && $access) || ($BE_USER->user['admin'] && !$this->id))	{
 
-				// Draw the header.
-			$this->doc = t3lib_div::makeInstance("mediumDoc");
-			$this->doc->backPath = $BACK_PATH;
-			$this->doc->form='<form action="" method="POST">';
+				// Draw the form
+			$this->doc->form = '<form action="" method="post" enctype="multipart/form-data">';
 
 				// JavaScript
 			$this->doc->JScode = '
@@ -116,35 +122,24 @@ class tx_icsutopia_module4 extends t3lib_SCbase {
 					if (top.fsMod) top.fsMod.recentIds["web"] = 0;
 				</script>
 			';
-
-			//$headerSection = $this->doc->getHeader("pages",$this->pageinfo,$this->pageinfo["_thePath"])."<br />".$LANG->sL("LLL:EXT:lang/locallang_core.xml:labels.path").": ".t3lib_div::fixed_lgd_pre($this->pageinfo["_thePath"],50);
-
-			$this->content.=$this->doc->startPage($LANG->getLL("title"));
-			$this->content.=$this->doc->header($LANG->getLL("title"));
-			$this->content.=$this->doc->spacer(5);
-			//$this->content.=$this->doc->section("",$this->doc->funcMenu($headerSection,t3lib_BEfunc::getFuncMenu($this->id,"SET[function]",$this->MOD_SETTINGS["function"],$this->MOD_MENU["function"])));
-			//$this->content.=$this->doc->divider(5);
-
-			// Render content:
+				// Render content:
 			$this->moduleContent();
-
-			// ShortCut
-			if ($BE_USER->mayMakeShortcut())	{
-				$this->content.=$this->doc->spacer(20).$this->doc->section("",$this->doc->makeShortcutIcon("id",implode(",",array_keys($this->MOD_MENU)),$this->MCONF["name"]));
-			}
-
-			$this->content.=$this->doc->spacer(10);
 		} else {
 				// If no access or if ID == zero
-
-			$this->doc = t3lib_div::makeInstance("mediumDoc");
-			$this->doc->backPath = $BACK_PATH;
-
-			$this->content.=$this->doc->startPage($LANG->getLL("title"));
-			$this->content.=$this->doc->header($LANG->getLL("title"));
-			$this->content.=$this->doc->spacer(5);
+			$docHeaderButtons['save'] = '';
 			$this->content.=$this->doc->spacer(10);
 		}
+
+			// compile document
+		$markers['FUNC_MENU'] = t3lib_BEfunc::getFuncMenu(0, 'SET[function]', $this->MOD_SETTINGS['function'], $this->MOD_MENU['function']);
+		$markers['CONTENT'] = $this->content;
+
+				// Build the <body> for the module
+		$this->content = $this->doc->startPage($LANG->getLL('title'));
+		$this->content.= $this->doc->moduleBody($this->pageinfo, $docHeaderButtons, $markers);
+		$this->content.= $this->doc->endPage();
+		$this->content = $this->doc->insertStylesAndJS($this->content);
+	
 	}
 
 	/**
@@ -320,7 +315,7 @@ class tx_icsutopia_module4 extends t3lib_SCbase {
 			}
 		}
 		
-		/*modifs loïc 08/07/08 */
+		/*modifs loÃ¯c 08/07/08 */
 
 		$t3d = utopia_t3d_editor::loadFile($file);
 		$mailer = t3lib_div::makeInstance('utopia_mail_notify');
@@ -330,7 +325,7 @@ class tx_icsutopia_module4 extends t3lib_SCbase {
 		$user = utopia_session::getUser();
 		$markers = array(
 			'###SITE_NAME###' => $session->_session['forms'][1]['tx_icsutopia_site'][1]['title'] ,
-		);		
+		);
 		$userid = 'be_' . $user->user['uid'];
 		$mailer->notify($userid, $session->_session['creator']['type'].'_'.$session->_session['creator']['id'], $markers, 'mail.accept');
 
@@ -359,7 +354,7 @@ class tx_icsutopia_module4 extends t3lib_SCbase {
 		$session->set('form', null);
 		$session->setT3DFile($file);
 		$session->saveSession();
-		header('Location: ' . t3lib_div::getIndpEnv('TYPO3_SITE_URL') . t3lib_extMgm::siteRelPath('ics_utopia') . 'mod5/index.php');
+		header('Location: ' . t3lib_div::locationHeaderUrl($GLOBALS['BACK_PATH'] . 'mod.php?M=txicsutopiaM1_txicsutopiaM5'));
 		exit;
 	}
 	
@@ -369,7 +364,7 @@ class tx_icsutopia_module4 extends t3lib_SCbase {
 		$config = t3lib_div::makeInstance('utopia_config');
 		$file = PATH_site . 'fileadmin/' . $config->getConfig('storage.requests') . $file;
 		
-		/*modifs loïc 09/07/08 */
+		/*modifs loÃ¯c 09/07/08 */
 				
 		$mailer = t3lib_div::makeInstance('utopia_mail_notify');
 		$session = t3lib_div::makeInstance('utopia_session');
@@ -436,7 +431,35 @@ class tx_icsutopia_module4 extends t3lib_SCbase {
 			rename($file, substr($file, 0, -3));
 		}
 		//xdebug_disable();
+	}	
+
+	/**
+	 * Create the panel of buttons for submitting the form or otherwise perform operations.
+	 *
+	 * @return	array	all available buttons as an assoc. array
+	 */
+	protected function getButtons()	{
+
+		$buttons = array(
+			'csh' => '',
+			'shortcut' => '',
+			'save' => ''
+		);
+			// CSH
+		$buttons['csh'] = t3lib_BEfunc::cshItem('_MOD_web_func', '', $GLOBALS['BACK_PATH']);
+
+			// SAVE button
+		// $buttons['save'] = '<input type="image" class="c-inputButton" name="submit" value="Update"' . t3lib_iconWorks::skinImg($GLOBALS['BACK_PATH'], 'gfx/savedok.gif', '') . ' title="' . $GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_core.php:rm.saveDoc', 1) . '" />';
+
+
+			// Shortcut
+		if ($GLOBALS['BE_USER']->mayMakeShortcut())	{
+			$buttons['shortcut'] = $this->doc->makeShortcutIcon('', 'function', $this->MCONF['name']);
+		}
+
+		return $buttons;
 	}
+	
 }
 
 

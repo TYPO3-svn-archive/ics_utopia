@@ -1,10 +1,14 @@
-(add new changes on top of this file)
-
 2011-08-16 Pierrick Caillon  <pierrick@in-cite.net>
+	* Added dependencies to PHP 5.2, TYPO3 4.3 and FPDF.
+	* Changed modules to use docheaders.
+	* Updated generated code as in new kickstarter versions (from 2y ago).
+	* Charset conversion in PDF generation.
+
+2011-08-16 Pierrick Caillon  <pierrick@in-cite.net> (r51126)
 	* Initial import into Forge.
 	* Working version.
 	* Should be same as TER version with minor updates.
 
 08-05-27 Pierrick Caillon  <pierrick@in-cite.net>
 
-	* Creation
+	* initial code generated with kickstarter

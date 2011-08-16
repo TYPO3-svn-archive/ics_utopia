@@ -170,7 +170,7 @@ class utopia_config // TODO: Change to a TSconfig editor.
 	{
 		$exts = array();
 		$disabled = explode(',', $this->getConfig('disabledexts'));
-		foreach($disabled as $extinfo)
+		foreach ($disabled as $extinfo)
 		{
 			$extinfo = explode(':', $extinfo, 2);
 			if ($extinfo[0] == $type)

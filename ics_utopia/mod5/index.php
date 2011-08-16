@@ -22,21 +22,14 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /**
- * Module 'New site' for the 'ics_utopia' extension.
+ * [CLASS/FUNCTION INDEX of SCRIPT]
  *
- * @author	In Cité Solution <technique@incitesolution.fr>
+ * Hint: use extdeveval to insert/update function index above.
  */
 
 
-
-	// DEFAULT initialization of a module [BEGIN]
-unset($MCONF);
-require ("conf.php");
-require ($BACK_PATH."init.php");
-require ($BACK_PATH."template.php");
-$LANG->includeLLFile('EXT:impexp/app/locallang.php');
-$LANG->includeLLFile("EXT:ics_utopia/mod5/locallang.xml");
-require_once (PATH_t3lib."class.t3lib_scbase.php");
+$LANG->includeLLFile('EXT:ics_utopia/mod5/locallang.xml');
+require_once(PATH_t3lib . 'class.t3lib_scbase.php');
 $BE_USER->modAccess($MCONF,1);	// This checks permissions and exits if the users has no permission for entry.
 	// DEFAULT initialization of a module [END]
 
@@ -46,7 +39,15 @@ require_once(t3lib_extMgm::extPath('ics_utopia', 'lib/class.utopia_form_manager.
 require_once(t3lib_extMgm::extPath('ics_utopia', 'lib/class.utopia_mail_notify.php'));
 require_once(t3lib_extMgm::extPath('ics_utopia', 'lib/class.utopia_pdf_generator.php'));
 
-class tx_icsutopia_module5 extends t3lib_SCbase {
+
+/**
+ * Module 'New site' for the 'ics_utopia' extension.
+ *
+ * @author	Pierrick Caillon <pierrick@in-cite.net>
+ * @package	TYPO3
+ * @subpackage	tx_icsutopia
+ */
+class  tx_icsutopia_module5 extends t3lib_SCbase {
 	var $pageinfo;
 
 	/**
@@ -59,8 +60,8 @@ class tx_icsutopia_module5 extends t3lib_SCbase {
 		parent::init();
 
 		/*
-		if (t3lib_div::_GP("clear_all_cache"))	{
-			$this->include_once[]=PATH_t3lib."class.t3lib_tcemain.php";
+		if (t3lib_div::_GP('clear_all_cache'))	{
+			$this->include_once[] = PATH_t3lib.'class.t3lib_tcemain.php';
 		}
 		*/
 	}
@@ -73,7 +74,10 @@ class tx_icsutopia_module5 extends t3lib_SCbase {
 	function menuConfig()	{
 		global $LANG;
 		$this->MOD_MENU = Array (
-			"function" => Array (
+			'function' => Array (
+				/*'1' => $LANG->getLL('function1'),
+				'2' => $LANG->getLL('function2'),
+				'3' => $LANG->getLL('function3'),*/
 			)
 		);
 		parent::menuConfig();
@@ -91,17 +95,18 @@ class tx_icsutopia_module5 extends t3lib_SCbase {
 		// Access check!
 		// The page will show only if there is a valid page and if this page may be viewed by the user
 		$this->pageinfo = t3lib_BEfunc::readPageAccess($this->id,$this->perms_clause);
-		$this->access = is_array($this->pageinfo) ? 1 : 0;
+		$access = is_array($this->pageinfo) ? 1 : 0;
 	
 			// initialize doc
 		$this->doc = t3lib_div::makeInstance('template');
 		$this->doc->setModuleTemplate(t3lib_extMgm::extPath('ics_utopia') . 'mod5/mod_template.html');
 		$this->doc->backPath = $BACK_PATH;
+		$docHeaderButtons = $this->getButtons();
 
-		if (($this->id && $this->access) || ($BE_USER->user["admin"] && !$this->id))	{
+		if (($this->id && $access) || ($BE_USER->user['admin'] && !$this->id))	{
 
 				// Draw the form
-			$this->doc->form='<form action="" method="POST" name="newsite" onsubmit="return TBE_EDITOR_checkSubmit(1);" enctype="' . $GLOBALS['TYPO3_CONF_VARS']['SYS']['form_enctype'] . '">';
+			$this->doc->form = '<form action="" method="post" enctype="multipart/form-data" name="newsite" onsubmit="return TBE_EDITOR_checkSubmit(1);">';
 
 			$this->doc->loadJavascriptLib($BACK_PATH . 'contrib/prototype/prototype.js');
 				// JavaScript
@@ -119,25 +124,24 @@ class tx_icsutopia_module5 extends t3lib_SCbase {
 					if (top.fsMod) top.fsMod.recentIds["web"] = 0;
 				</script>
 			';
-
-			$this->content.=$this->doc->header($LANG->getLL("title"));
-			$this->content.=$this->doc->spacer(5);
 				// Render content:
 			$this->moduleContent();
 		} else {
 				// If no access or if ID == zero
+			$docHeaderButtons['save'] = '';
+			$this->content.=$this->doc->spacer(10);
 		}
-		$docHeaderButtons = $this->getButtons();
 
 			// compile document
-		//$markers['FUNC_MENU'] = t3lib_BEfunc::getFuncMenu(0, 'SET[function]', $this->MOD_SETTINGS['function'], $this->MOD_MENU['function']);
+		$markers['FUNC_MENU'] = t3lib_BEfunc::getFuncMenu(0, 'SET[function]', $this->MOD_SETTINGS['function'], $this->MOD_MENU['function']);
 		$markers['CONTENT'] = $this->content;
 
 				// Build the <body> for the module
-		$this->content = $this->doc->startPage($LANG->getLL("title"));
+		$this->content = $this->doc->startPage($LANG->getLL('title'));
 		$this->content.= $this->doc->moduleBody($this->pageinfo, $docHeaderButtons, $markers);
 		$this->content.= $this->doc->endPage();
 		$this->content = $this->doc->insertStylesAndJS($this->content);
+	
 	}
 
 	/**
@@ -320,27 +324,27 @@ function TBE_EDITOR_checkSubmit()
 	 * @return	array	all available buttons as an assoc. array
 	 */
 	protected function getButtons()	{
-		global $TCA, $LANG, $BACK_PATH, $BE_USER;
 
 		$buttons = array(
+			'csh' => '',
 			'shortcut' => '',
-			'save' => '',
+			'save' => ''
 		);
+			// CSH
+		$buttons['csh'] = t3lib_BEfunc::cshItem('_MOD_web_func', '', $GLOBALS['BACK_PATH']);
 
-		if ($this->id && $this->access)	{
-				// Shortcut
-			if ($BE_USER->mayMakeShortcut())	{
-				$buttons['shortcut'] = $this->doc->makeShortcutIcon('id, edit_record, pointer, new_unique_uid, search_field, search_levels, showLimit', implode(',', array_keys($this->MOD_MENU)), $this->MCONF['name']);
-			}
-		} else {
-				// Shortcut
-			if ($BE_USER->mayMakeShortcut())	{
-				$buttons['shortcut'] = $this->doc->makeShortcutIcon('id', '', $this->MCONF['name']);
-			}
+			// SAVE button
+		$buttons['save'] = '<input type="image" class="c-inputButton" name="submit" value="Update"' . t3lib_iconWorks::skinImg($GLOBALS['BACK_PATH'], 'gfx/savedok.gif', '') . ' title="' . $GLOBALS['LANG']->sL('LLL:EXT:lang/locallang_core.php:rm.saveDoc', 1) . '" />';
+
+
+			// Shortcut
+		if ($GLOBALS['BE_USER']->mayMakeShortcut())	{
+			$buttons['shortcut'] = $this->doc->makeShortcutIcon('', 'function', $this->MCONF['name']);
 		}
 
 		return $buttons;
 	}
+	
 }
 
 

@@ -19,20 +19,4 @@
 			<label index="error.norequest">Pas de demande.</label>
 		</languageKey>
 	</data>
-	<orig_hash type="array">
-		<languageKey index="fr" type="array">
-			<label index="title" type="integer">24706534</label>
-			<label index="header.file" type="integer">135685754</label>
-			<label index="error.noarchive" type="integer">51525437</label>
-			<label index="title.list" type="integer">22238901</label>
-		</languageKey>
-	</orig_hash>
-	<orig_text type="array">
-		<languageKey index="fr" type="array">
-			<label index="title">Archives</label>
-			<label index="header.file">Site name</label>
-			<label index="error.noarchive">No request.</label>
-			<label index="title.list">Accepted requets list</label>
-		</languageKey>
-	</orig_text>
 </T3locallang>

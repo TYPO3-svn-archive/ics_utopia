@@ -24,26 +24,4 @@
 			<label index="tt_content.CType_pi1">Création de site</label>
 		</languageKey>
 	</data>
-	<orig_hash type="array">
-		<languageKey index="fr" type="array">
-			<label index="tx_icsutopia_site" type="integer">214339901</label>
-			<label index="tx_icsutopia_site.url" type="integer">29019036</label>
-			<label index="tx_icsutopia_site.be_group" type="integer">57667643</label>
-			<label index="tx_icsutopia_site.base_model" type="integer">197987260</label>
-			<label index="tx_icsutopia_site.title" type="integer">17642081</label>
-			<label index="tx_icsutopia_site.main_storage" type="integer">206054960</label>
-			<label index="tt_content.CType_pi1" type="integer">256587619</label>
-		</languageKey>
-	</orig_hash>
-	<orig_text type="array">
-		<languageKey index="fr" type="array">
-			<label index="tx_icsutopia_site">Generated Site ID</label>
-			<label index="tx_icsutopia_site.url">Site URL</label>
-			<label index="tx_icsutopia_site.be_group">Backend group</label>
-			<label index="tx_icsutopia_site.base_model">Base model</label>
-			<label index="tx_icsutopia_site.title">Site title</label>
-			<label index="tx_icsutopia_site.main_storage">Main storage page</label>
-			<label index="tt_content.CType_pi1">Site creation</label>
-		</languageKey>
-	</orig_text>
 </T3locallang>

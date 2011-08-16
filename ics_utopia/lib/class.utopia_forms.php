@@ -1907,7 +1907,8 @@ class utopia_forms
 			$markers = array(
 				'###ID_NEW_INDICATOR###' => '',
 				'###RECORD_LABEL###' => '',
-				'###TABLE_TITLE###' => $title,
+				'###TABLE_TITLE###' => '', // $title,
+				'###PAGE_TITLE###' => $title,
 				'###RECORD_ICON###' => '',
 			);
 			$parts[0] = str_replace(array_keys($markers), array_values($markers), str_replace(' - ', '', $parts[0]));
@@ -1921,7 +1922,8 @@ class utopia_forms
 			$markers = array(
 				'###ID_NEW_INDICATOR###' => '',
 				'###RECORD_LABEL###' => '',
-				'###TABLE_TITLE###' => $title,
+				'###TABLE_TITLE###' => '', // $title,
+				'###PAGE_TITLE###' => $title,
 				'###RECORD_ICON###' => '',
 			);
 			$parts[0] = str_replace(array_keys($markers), array_values($markers), str_replace(' - ', '', $parts[0]));

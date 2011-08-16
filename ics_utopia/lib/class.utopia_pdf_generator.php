@@ -78,6 +78,7 @@ class utopia_pdf_generator
 				$pdfStructure[] = $_procObj->printPDF($t3d, $formData);
 			}
 		}
+		$this->convertCharsetRecursive($pdfStructure);
 		
 		$formData = $session->getFormData(1);
 		$this->pdfStructure($pdfStructure, preg_replace('/[^A-Z0-9_-]/i', '_', $formData["tx_icsutopia_site"][1]['title']));
@@ -359,6 +360,20 @@ class utopia_pdf_generator
 		}
 		if ($last != '')
 			$this->fpdf->Ln(((($last == 'dt') ? $dtStyle['size'] : $ddStyle['size']) + $style['bottom']) / $this->fpdf->k);
+	}
+	
+	private function convertCharsetRecursive(array & $elements) {
+		if (!$this->csConvObj || !$this->charSet) {
+			$obj = ($GLOBALS['LANG']) ? ($GLOBALS['LANG']) : ($GLOBALS['TSFE']);
+			$this->csConvObj = $obj->csConvObj;
+			$this->charSet = (($GLOBALS['LANG']) ? ($obj->charSet) : ($obj->renderCharset));
+		}
+		foreach ($elements as $key => & $element) {
+			if (is_array($element))
+				$this->convertCharsetRecursive($elements[$key]);
+			elseif (is_string($element))
+				$elements[$key] = $this->csConvObj->conv($element, $this->charSet, 'iso-8859-1');
+		}
 	}
 }
 

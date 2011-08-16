@@ -22,9 +22,9 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /**
- * Plugin 'Site creation' for the 'ics_utopia' extension.
+ * [CLASS/FUNCTION INDEX of SCRIPT]
  *
- * @author	Pierrick Caillon <pierrick@in-cite.net>
+ * Hint: use extdeveval to insert/update function index above.
  */
 
 require_once(PATH_tslib.'class.tslib_pibase.php');
@@ -40,11 +40,19 @@ require_once(PATH_t3lib.'class.t3lib_userauthgroup.php');
 require_once(PATH_t3lib.'class.t3lib_beuserauth.php');
 require_once(PATH_t3lib.'class.t3lib_tsfebeuserauth.php');
 
-class tx_icsutopia_pi1 extends tslib_pibase {
-	var $prefixId = 'tx_icsutopia_pi1';		// Same as class name
-	var $scriptRelPath = 'pi1/class.tx_icsutopia_pi1.php';	// Path to this script relative to the extension dir.
-	var $extKey = 'ics_utopia';	// The extension key.
 
+/**
+ * Plugin 'Site creation' for the 'ics_utopia' extension.
+ *
+ * @author	Pierrick Caillon <pierrick@in-cite.net>
+ * @package	TYPO3
+ * @subpackage	tx_icsutopia
+ */
+class tx_icsutopia_pi1 extends tslib_pibase {
+	var $prefixId      = 'tx_icsutopia_pi1';		// Same as class name
+	var $scriptRelPath = 'pi1/class.tx_icsutopia_pi1.php';	// Path to this script relative to the extension dir.
+	var $extKey        = 'ics_utopia';	// The extension key.
+	
 	/**
 	 * The main method of the PlugIn
 	 *
@@ -52,7 +60,7 @@ class tx_icsutopia_pi1 extends tslib_pibase {
 	 * @param	array		$conf: The PlugIn configuration
 	 * @return	The content that is displayed on the website
 	 */
-	function main($content,$conf)	{
+	function main($content, $conf)	{
 		$this->conf=$conf;
 		$this->pi_setPiVarDefaults();
 		$GLOBALS['LANG'] = t3lib_div::makeInstance('language');

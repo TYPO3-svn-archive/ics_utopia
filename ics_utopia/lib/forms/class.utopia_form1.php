@@ -116,7 +116,7 @@ class utopia_form1 extends utopia_form_base
 			$panel .= '<li class="utopia-form-buttons">' . $this->_forms->getSubmitButton($GLOBALS['LANG']->getLL('action.update'), 'update', 'form1') . '</li>';
 		}
 		$content = $this->_forms->wrapTotal($panel, $GLOBALS['LANG']->getLL('form1.title'), '');
-		return $GLOBALS['dbg'] . $content;
+		return $content;
 	}
 	
 	function getFormData()
