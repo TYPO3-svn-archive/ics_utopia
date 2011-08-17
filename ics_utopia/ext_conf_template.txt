@@ -50,3 +50,6 @@ import {
 	# cat=basic/import/1; type=string; label=Static tables: Comma-separated list of the static tables set to define when exporting site templates.
 	statics=sys_languages
 }
+
+# cat=basic/templates/1; type=string; label=Pages constants prefix: The constant name prefix used to mark which constants are to be updated. Contants names must be fully qualified, not in a sub-block.
+prefix=page

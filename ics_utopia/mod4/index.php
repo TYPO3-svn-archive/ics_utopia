@@ -37,8 +37,6 @@ require_once(t3lib_extMgm::extPath('ics_utopia', 'lib/class.utopia_session.php')
 require_once(t3lib_extMgm::extPath('ics_utopia', 'lib/class.utopia_form_manager.php'));
 require_once(t3lib_extMgm::extPath('ics_utopia', 'lib/class.utopia_mail_notify.php'));
 
-
-
 /**
  * Module 'Current requests' for the 'ics_utopia' extension.
  *
@@ -302,20 +300,17 @@ class  tx_icsutopia_module4 extends t3lib_SCbase {
 				'enableLogging' => 1,
 				'pid' => $config->getConfig('storage.siteroot')
 			), $data);
-		//$hooks = array();
+
 			// Hook for postprocessing the imported data:
 		if (is_array($TYPO3_CONF_VARS['EXTCONF']['ics_utopia']['postAction']))    {
 			foreach($TYPO3_CONF_VARS['EXTCONF']['ics_utopia']['postAction'] as $_classRef)    {
-				$_procObj = & t3lib_div::getUserObj($_classRef, false);
-				if (is_object($_procObj) && (get_parent_class($_procObj) == 'utopia_postAction_base'))
+				$_procObj = t3lib_div::getUserObj($_classRef, false);
+				if (is_object($_procObj) && ($_procObj instanceof utopia_postAction_base))
 				{
 					$_procObj->doAction($data);
-					//$hooks[] = get_class($_procObj);
 				}
 			}
 		}
-		
-		/*modifs loïc 08/07/08 */
 
 		$t3d = utopia_t3d_editor::loadFile($file);
 		$mailer = t3lib_div::makeInstance('utopia_mail_notify');

@@ -7,8 +7,8 @@
 		<a name="french"></a>
 		Bonjour ,<br />
 		<br />
-		Une demande de création d'un nouveau site a été effectuée.<br />
-		Voici le détails du site : <br />
+		Une demande de crÃ©ation d'un nouveau site a Ã©tÃ© effectuÃ©e.<br />
+		Voici le dÃ©tails du site : <br />
 		
 			- Titre du site : ###SITE_NAME###<br /><br />
 

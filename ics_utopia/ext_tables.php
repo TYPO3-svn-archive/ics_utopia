@@ -2,6 +2,9 @@
 if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
+
+t3lib_extMgm::allowTableOnStandardPages('tx_icsutopia_site');
+
 $TCA['tx_icsutopia_site'] = array (
 	'ctrl' => array (
 		'title'     => 'LLL:EXT:ics_utopia/locallang_db.xml:tx_icsutopia_site',		

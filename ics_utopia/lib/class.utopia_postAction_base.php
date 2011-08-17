@@ -35,14 +35,12 @@
  *
  * @package UTOPIA
  */
-class utopia_postAction_base
+abstract class utopia_postAction_base
 {
 	/**
 	 * Execute the action.
 	 *
 	 * @param array The T3D file array representation resulting from the importation.
 	 */
-	function doAction($t3d)
-	{
-	}
+	abstract function doAction(& $t3d);
 }

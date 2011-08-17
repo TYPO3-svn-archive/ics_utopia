@@ -1,4 +1,8 @@
-2011-08-16 Pierrick Caillon  <pierrick@in-cite.net>
+2011-08-17 Pierrick Caillon  <pierrick@in-cite.net>
+	* Integrated the page id updater for templates constants.
+	* Minor bugfixes
+
+2011-08-16 Pierrick Caillon  <pierrick@in-cite.net> (r51162)
 	* Added dependencies to PHP 5.2, TYPO3 4.3 and FPDF.
 	* Changed modules to use docheaders.
 	* Updated generated code as in new kickstarter versions (from 2y ago).
