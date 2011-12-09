@@ -335,7 +335,7 @@ class ux_tx_impexp extends tx_impexp
 	function export_addFile_getMedias($uniquePrefix, $ext, $content)
 	{
 		if (strtolower($ext)==='css')	{
-			return explode($uniquePrefix, eregi_replace('(url[[:space:]]*\([[:space:]]*["\']?)([^"\')]*)(["\']?[[:space:]]*\))', '\1'.$uniquePrefix.'\2'.$uniquePrefix.'\3', $content));
+			return explode($uniquePrefix, preg_replace('#(url[[:space:]]*\([[:space:]]*["\']?)([^"\')]*)(["\']?[[:space:]]*\))#i', '\1'.$uniquePrefix.'\2'.$uniquePrefix.'\3', $content));
 		} else {	// html, htm:
 			$htmlParser = t3lib_div::makeInstance('t3lib_parsehtml');
 			return explode($uniquePrefix, $htmlParser->prefixResourcePath($uniquePrefix,$content,array(),$uniquePrefix));

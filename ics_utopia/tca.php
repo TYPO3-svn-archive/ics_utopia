@@ -38,7 +38,7 @@ $TCA['tx_icsutopia_site'] = array (
 				'readonly' => '1',
 				'type' => 'select',	
 				'foreign_table' => 'be_groups',	
-				'foreign_table_where' => 'AND be_groups.pid=###SITEROOT### ORDER BY be_groups.uid',	
+				'foreign_table_where' => 'ORDER BY be_groups.uid',	
 				'size' => 1,	
 				'minitems' => 1,
 				'maxitems' => 1,

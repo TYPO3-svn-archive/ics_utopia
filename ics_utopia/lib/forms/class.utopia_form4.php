@@ -93,7 +93,7 @@ class utopia_form4 extends utopia_form_base
 		}
 		else
 		{
-			$row = split(',', $formData['tx_icsutopia_site']['1']['base_model']);
+			$row = explode(',', $formData['tx_icsutopia_site']['1']['base_model']);
 			for ($i = 0; $i < $this->level; ++$i)
 			{
 				if (!isset($row[$i]) || empty($row[$i]))

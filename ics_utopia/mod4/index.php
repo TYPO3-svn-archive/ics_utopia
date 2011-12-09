@@ -44,7 +44,7 @@ require_once(t3lib_extMgm::extPath('ics_utopia', 'lib/class.utopia_mail_notify.p
  * @package	TYPO3
  * @subpackage	tx_icsutopia
  */
-class  tx_icsutopia_module4 extends t3lib_SCbase {
+class tx_icsutopia_module4 extends t3lib_SCbase {
 	var $pageinfo;
 
 	/**
@@ -398,33 +398,34 @@ class  tx_icsutopia_module4 extends t3lib_SCbase {
 		$session = t3lib_div::makeInstance('utopia_session');
 		$config = t3lib_div::makeInstance('utopia_config');
 		$files = glob(PATH_site . 'fileadmin/' . $config->getConfig('storage.requests') . 'utopia*.t3d_fe');
-		foreach ($files as $file)
-		{
-			$t3d = utopia_t3d_editor::loadFile($file);
-			$session->_session = $t3d['header']['meta']['session'];
-			$form = utopia_form_manager::getForm(4);
-			
-			$form->updateData($t3d, $session->getFormData(4), $session->get(array('forms', 1, 'tx_icsutopia_site', '1', 'title')), $session->get(array('creator')));
-			for ($i = 1; $i < 4; ++$i)
+		if (!empty($files))
+			foreach ($files as $file)
 			{
-				$other = utopia_form_manager::getForm($i);
-				if (!$other)
-					continue;
-				$data = $session->getFormData($i);
-				$other->updateData($t3d, $data);
+				$t3d = utopia_t3d_editor::loadFile($file);
+				$session->_session = $t3d['header']['meta']['session'];
+				$form = utopia_form_manager::getForm(4);
+				
+				$form->updateData($t3d, $session->getFormData(4), $session->get(array('forms', 1, 'tx_icsutopia_site', '1', 'title')), $session->get(array('creator')));
+				for ($i = 1; $i < 4; ++$i)
+				{
+					$other = utopia_form_manager::getForm($i);
+					if (!$other)
+						continue;
+					$data = $session->getFormData($i);
+					$other->updateData($t3d, $data);
+				}
+				$t3d['header']['meta']['title'] = $t3d['records']['tx_icsutopia_site:1']['data']['title'];
+				$t3d['header']['meta']['session'] = $session->_session;
+				$formId = 4;
+				while (($formId = utopia_form_manager::getNextFormId($formId)) != 'last')
+				{
+					$other = utopia_form_manager::getForm($formId);
+					$data = $session->getFormData($formId);
+					$other->updateData($t3d, $data);
+				}
+				utopia_t3d_editor::saveFile($file, $t3d);
+				rename($file, substr($file, 0, -3));
 			}
-			$t3d['header']['meta']['title'] = $t3d['records']['tx_icsutopia_site:1']['data']['title'];
-			$t3d['header']['meta']['session'] = $session->_session;
-			$formId = 4;
-			while (($formId = utopia_form_manager::getNextFormId($formId)) != 'last')
-			{
-				$other = utopia_form_manager::getForm($formId);
-				$data = $session->getFormData($formId);
-				$other->updateData($t3d, $data);
-			}
-			utopia_t3d_editor::saveFile($file, $t3d);
-			rename($file, substr($file, 0, -3));
-		}
 		//xdebug_disable();
 	}	
 

@@ -87,6 +87,7 @@ class utopia_form2 extends utopia_form_base
 		$fieldList = array(
 			'realName;LLL:EXT:ics_utopia/locallang_db_be_users.xml:be_users.realName',
 			'email;LLL:EXT:ics_utopia/locallang_db_be_users.xml:be_users.email',
+			'--linebreak--',
 			'username;LLL:EXT:ics_utopia/locallang_db_be_users.xml:be_users.username',
 			'password;LLL:EXT:ics_utopia/locallang_db_be_users.xml:be_users.password',
 		);
@@ -114,6 +115,8 @@ class utopia_form2 extends utopia_form_base
 				// retrait du required sur les champs suivants
 				foreach($fieldList as $field)
 				{
+					if ($field == '--linebreak--')
+						continue;
 					if (strpos($field, ';'))
 						$field = substr($field, 0, strpos($field, ';'));
 					$GLOBALS['TCA']['be_users']['columns'][$field]['config']['eval'] = str_replace('required', '', $GLOBALS['TCA']['be_users']['columns'][$field]['config']['eval']);
@@ -195,21 +198,22 @@ class utopia_form2 extends utopia_form_base
 					'rels' => array(
 						'usergroup' => array(
 							'type' => 'db',
-							'itemArray' => array(
-								array(
-									'id' => $group,
-									'table' => 'be_groups'
-								)
-							)
+							'itemArray' => array(),
 						)
 					)
 				);
 			$t3d['records']['be_users:'.$key]['data']['tstamp'] = time();
-			$t3d['records']['be_users:'.$key]['data']['usergroup'] = $group;
+			$t3d['records']['be_users:'.$key]['data']['usergroup'] = implode(',', array_unique(array_merge(t3lib_div::trimExplode(',', $t3d['records']['be_users:'.$key]['data']['usergroup'], true), array($group))));
 			$t3d['records']['be_users:'.$key]['data']['username'] = $beuser['username'];
 			$t3d['records']['be_users:'.$key]['data']['realName'] = $beuser['realName'];
 			$t3d['records']['be_users:'.$key]['data']['password'] = md5($beuser['password']);
 			$t3d['records']['be_users:'.$key]['data']['email'] = $beuser['email'];
+			foreach (t3lib_div::trimExplode(',', $t3d['records']['be_users:'.$key]['data']['usergroup'], true) as $usergroup) {
+				$t3d['records']['be_users:'.$key]['rels']['usergroup']['itemArray'][] = array(
+					'id' => $usergroup,
+					'table' => 'be_groups'
+				);
+			}
 			
 			if ($config->getConfig('template.createfe'))
 			{
@@ -244,18 +248,24 @@ class utopia_form2 extends utopia_form_base
 			// Set the header data about these records and their references.
 			if (!isset($t3d['header']['records']['be_users']))
 				$t3d['header']['records']['be_users'] = array();
-			if (!isset($t3d['header']['records']['be_users'][$key]))
+			if (!isset($t3d['header']['records']['be_users'][$key])) {
 				$t3d['header']['records']['be_users'][$key] = array(
 					'uid' => $key,
 					'pid' => 0,
-					'rels' => array(
-						'be_groups:' . $group => array(
-							'table' => 'be_groups',
-							'id' => $group
-						)
-					),
+					'rels' => array(),
 					'softrefs' => array()
 				);
+				foreach (t3lib_div::trimExplode(',', $t3d['records']['be_users:'.$key]['data']['usergroup'], true) as $usergroup) {
+					$t3d['header']['records']['be_users'][$key]['rels']['be_groups:' . $usergroup] = array(
+						'table' => 'be_groups',
+						'id' => $usergroup,
+					);
+				}
+			}
+			foreach (t3lib_div::trimExplode(',', $t3d['records']['be_users:'.$key]['data']['usergroup'], true) as $usergroup) {
+				if ($usergroup != $group)
+					$t3d['header']['excludeMap']['be_groups:' . $usergroup] = 1;
+			}
 			$admin = & $t3d['header']['records']['be_users'][$key];
 			$admin['title'] = $beuser['username'];
 			$admin['size'] = strlen(serialize($t3d['records']['be_users:'.$key]['data']));

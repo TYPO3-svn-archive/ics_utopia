@@ -12,6 +12,7 @@ $TCA['tx_icsutopia_site'] = array (
 		'tstamp'    => 'tstamp',
 		'crdate'    => 'crdate',
 		'cruser_id' => 'cruser_id',
+		'fe_cruser_id' => 'fe_cruser_id',
 		'default_sortby' => 'ORDER BY title',	
 		'delete' => 'deleted',	
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'tca.php',

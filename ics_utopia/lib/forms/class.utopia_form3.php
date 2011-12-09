@@ -55,6 +55,7 @@ class utopia_form3 extends utopia_form_base
 		$fieldList = array(
 			'name;LLL:EXT:ics_utopia/mod5/locallang.xml:users.name',
 			'email',
+			'--linebreak--',
 			'username',
 			'password',
 		);
@@ -76,6 +77,8 @@ class utopia_form3 extends utopia_form_base
 			// retrait du required sur les champs suivants
 			foreach($fieldList as $field)
 			{
+				if ($field == '--linebreak--')
+					continue;
 				if (strpos($field, ';'))
 					$field = substr($field, 0, strpos($field, ';'));
 				$GLOBALS['TCA']['fe_users']['columns'][$field]['config']['eval'] = str_replace('required', '', $GLOBALS['TCA']['fe_users']['columns'][$field]['config']['eval']);

@@ -47,7 +47,7 @@ require_once(t3lib_extMgm::extPath('ics_utopia', 'lib/class.utopia_pdf_generator
  * @package	TYPO3
  * @subpackage	tx_icsutopia
  */
-class  tx_icsutopia_module5 extends t3lib_SCbase {
+class tx_icsutopia_module5 extends t3lib_SCbase {
 	var $pageinfo;
 
 	/**

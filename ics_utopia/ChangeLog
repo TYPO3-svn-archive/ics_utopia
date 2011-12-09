@@ -1,3 +1,12 @@
+2011-12-09 Pierrick Caillon  <pierrick@in-cite.net>
+	* Feature: Keep existing groups from template BE users.
+
+2011-11-15 Pierrick Caillon  <pierrick@in-cite.net>
+	* Bug fix: Site title encoding for folders.
+	* Bug fix: Missing setup in TCA.
+	* Feature: Linebreaks in palettes for user definition.
+	* Other minor changes.
+
 2011-08-17 Pierrick Caillon  <pierrick@in-cite.net>
 	* Integrated the page id updater for templates constants.
 	* Minor bugfixes

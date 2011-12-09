@@ -10,6 +10,7 @@
 			<label index="header.file">Site name</label>
 			<label index="error.noarchive">No request.</label>
 			<label index="title.list">Accepted requets list</label>
+			<label index="error.norequest">No request.</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="title">Archives</label>

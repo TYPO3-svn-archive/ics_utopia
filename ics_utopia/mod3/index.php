@@ -44,7 +44,7 @@ require_once(t3lib_extMgm::extPath('ics_utopia', 'lib/class.utopia_t3d_editor.ph
  * @package	TYPO3
  * @subpackage	tx_icsutopia
  */
-class  tx_icsutopia_module3 extends t3lib_SCbase {
+class tx_icsutopia_module3 extends t3lib_SCbase {
 	var $pageinfo;
 
 	/**

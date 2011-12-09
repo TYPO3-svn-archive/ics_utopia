@@ -66,7 +66,7 @@ class utopia_t3d_editor
 			$inData['pagetree']['maxNumber'] = t3lib_div::intInRange($inData['pagetree']['maxNumber'],1,10000,100);
 			$inData['listCfg']['maxNumber'] = t3lib_div::intInRange($inData['listCfg']['maxNumber'],1,10000,100);
 			$inData['maxFileSize'] = t3lib_div::intInRange($inData['maxFileSize'],1,10000,1000);
-			$inData['filename'] = trim(ereg_replace('[^[:alnum:]./_-]*','',ereg_replace('\.(t3d|xml)$','',$inData['filename'])));
+			$inData['filename'] = trim(preg_replace('#[^[:alnum:]./_-]*#','',preg_replace('#\.(t3d|xml)$#','',$inData['filename'])));
 			if (strlen($inData['filename']))        {
 //					$inData['filename'].= $inData['filetype']=='xml' ? '.xml' : '.t3d';
 					$inData['filename'].= '.t3d';
@@ -228,8 +228,12 @@ class utopia_t3d_editor
 		$config = t3lib_div::makeInstance('utopia_config');
 		$newPath = $config->getConfig('storage.newroot');
 		$siteName = uniqid('site');
-		if (isset($inData['siteTitle']))
-			$siteName = preg_replace('/[^a-z0-9_-]/i', '_', $inData['siteTitle']);
+		if (isset($inData['siteTitle'])) {
+			$siteName = $inData['siteTitle'];
+			if ($GLOBALS['TYPO3_CONF_VARS']['BE']['forceCharset'])
+				$siteName = iconv($GLOBALS['TYPO3_CONF_VARS']['BE']['forceCharset'], 'ASCII//TRANSLIT', $siteName);
+			$siteName = preg_replace('/[^a-z0-9_-]/i', '_', $siteName);
+		}
 		if (strpos($newPath, '###TITLE###') === false)
 		{
 			if (($newPath != '') && (substr($newPath, -1, 1) != '/'))
