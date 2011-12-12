@@ -1,3 +1,6 @@
+2011-12-11 Pierrick Caillon  <pierrick@in-cite.net>
+	* Bug fix: Mountpoint path does not match realpath.
+
 2011-12-09 Pierrick Caillon  <pierrick@in-cite.net>
 	* Feature: Keep existing groups from template BE users.
 

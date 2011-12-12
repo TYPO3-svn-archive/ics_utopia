@@ -204,7 +204,11 @@ class utopia_form1 extends utopia_form_base
 				'rels' => array()
 			);
 		$t3d['records']['sys_filemounts:1']['data']['title'] = $data['title'];
-		$t3d['records']['sys_filemounts:1']['data']['path'] = str_replace('###TITLE###', $data['title'], $config->getConfig('storage.newroot'));
+		$siteName = $data['title'];
+		if ($GLOBALS['TYPO3_CONF_VARS']['BE']['forceCharset'])
+			$siteName = iconv($GLOBALS['TYPO3_CONF_VARS']['BE']['forceCharset'], 'ASCII//TRANSLIT', $siteName);
+		$siteName = preg_replace('/[^a-z0-9_-]/i', '_', $siteName);
+		$t3d['records']['sys_filemounts:1']['data']['path'] = str_replace('###TITLE###', $siteName, $config->getConfig('storage.newroot'));
 		if (!isset($t3d['records']['be_groups:' . $group['uid']]))
 			$t3d['records']['be_groups:' . $group['uid']] = array(
 				'data' => $group,
