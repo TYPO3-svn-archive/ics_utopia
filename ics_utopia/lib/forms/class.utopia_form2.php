@@ -316,7 +316,7 @@ class utopia_form2 extends utopia_form_base
 				{
 					if (!empty($BeUser['email']) && !empty($BeUser['password']) && !empty($BeUser['realName']) && !empty($BeUser['username']))
 					{
-						if(!preg_match('/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/i', $BeUser['email']))
+						if(!preg_match('/^[a-z0-9.+_-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/i', $BeUser['email']))
 						{
 							$origUid = unserialize(base64_decode($BeUser['origUid']));
 							$this->errors[] = sprintf($GLOBALS['LANG']->getLL('form2.errors.email.invalid'), $origUid[1]);

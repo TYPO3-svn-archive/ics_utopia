@@ -191,7 +191,7 @@ class tx_icsutopia_module4 extends t3lib_SCbase {
 		$config = t3lib_div::makeInstance('utopia_config');
 		$this->updateFeRequests();
 		$files = glob(PATH_site . 'fileadmin/' . $config->getConfig('storage.requests') . 'utopia*.t3d');
-		if (count($files) > 0)
+		if (is_array($files) && (count($files) > 0))
 		{
 			$data = array(
 				array(

@@ -41,7 +41,7 @@ require_once (PATH_t3lib.'class.t3lib_softrefproc.php');
  */
 class ux_t3lib_softrefproc extends t3lib_softrefproc
 {
-	function is_file($filePath)
+	static function is_file($filePath)
 	{
 		//var_dump(1, $filePath);
 		if (@is_file($filePath))
@@ -103,7 +103,7 @@ class ux_t3lib_softrefproc extends t3lib_softrefproc
 								'tokenID' => $tokenID,
 								'tokenValue' => $attribs[0]['src'],
 							);
-							if (!$this->is_file($absPath))	{	// Finally, notice if the file does not exist.
+							if (!self::is_file($absPath))	{	// Finally, notice if the file does not exist.
 								$elements[$k]['error'] = 'File does not exist!';
 							}
 						} else {
@@ -172,7 +172,7 @@ class ux_t3lib_softrefproc extends t3lib_softrefproc
 								'tokenID' => $tokenID,
 								'tokenValue' => $attribs[0][$attributeName],
 							);
-							if (!$this->is_file($absPath))	{
+							if (!self::is_file($absPath))	{
 								$elements[$k]['error'] = 'File does not exist!';
 							}
 						} else {
@@ -231,7 +231,7 @@ class ux_t3lib_softrefproc extends t3lib_softrefproc
 
 					// Check if the file actually exists:
 				$absPath = t3lib_div::getFileAbsFileName(PATH_site.$value);
-				if (!$this->is_file($absPath))	{
+				if (!self::is_file($absPath))	{
 					$elements['fileadminReferences.'.$idx]['error'] = 'File does not exist!';
 				}
 			}
@@ -286,7 +286,7 @@ class ux_t3lib_softrefproc extends t3lib_softrefproc
 
 							// Depending on whether the file exists or not we will set the
 						$absPath = t3lib_div::getFileAbsFileName(PATH_site.$tLP['filepath']);
-						if (!$this->is_file($absPath))	{
+						if (!self::is_file($absPath))	{
 							$elements[$tokenID.':'.$idx]['error'] = 'File does not exist!';
 						}
 
